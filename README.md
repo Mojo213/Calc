@@ -1,2 +1,2 @@
 # Calc
- caculator project 
+ Calculator project 
