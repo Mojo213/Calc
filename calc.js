@@ -1,80 +1,100 @@
 function add(a, b) {
-    return a + b;
+  return a + b;
+}
+
+function subtract(a, b) {
+  return a - b;
+}
+
+function multiply(a, b) {
+  return a * b;
+}
+
+function divide(a, b) {
+  return a / b;
+}
+
+let firstNumber = '';
+let operator = '';
+let secondNumber = '';
+let result = '';
+
+
+function operate (num1, logic, num2) {
+if (logic === '+') {
+  return add (+num1, +num2);
+
+} else if (logic === '-'){
+  return subtract(+num1, +num2);
+
+} else if (logic === 'x'){
+  return multiply (+num1, +num2)
+
+} else if (logic === '/') {
+  if (+num2 === 0) {
+    throw new Error("Cannot divide by zero!");
   }
-  
-  function subtract(a, b) {
-    return a - b;
-  }
-  
-  function multiply(a, b) {
-    return a * b;
-  }
-  
-  function divide(a, b) {
-    return a / b;
-  }
-  
-  let firstNumber = '';
-  let operator = '';
-  let secondNumber = '';
-  
-  function operate(firstNumber, operator, secondNumber) {
-    if (operator === '+') {
-      return add(+firstNumber, +secondNumber);
-    } else if (operator === '-') {
-      return subtract(+firstNumber, +secondNumber);
-    } else if (operator === 'x') {
-      return multiply(+firstNumber, +secondNumber);
-    } else if (operator === '/') {
-      if (+secondNumber === 0) {
-        return 'Cannot divide by zero';
-      }
-      return divide(+firstNumber, +secondNumber);
-    } else {
-      return 'Invalid operator';
-    }
-  }
-  
-  let currentDisplayValue = 0;
-  
-  let btnContainer = document.querySelector('.containerbtns');
-  let display = document.querySelector('.displayctn');
-  let dsplyText = display.querySelector('p');
-  let buttons = Array.from(btnContainer.querySelectorAll('button'));
-  
-  buttons.forEach((button) => {
-    button.addEventListener('click', (e) => {
-      if (!isNaN(parseInt(button.value)) && operator === '') {
-        const clickedNumber = button.value;
-        currentDisplayValue = clickedNumber;
-        firstNumber += currentDisplayValue;
-        dsplyText.textContent = firstNumber;
-      } else if (['+', '-', 'x', '/'].includes(button.value)) {
-        operator = button.value;
-        dsplyText.textContent = firstNumber + operator;
-      } else if (!isNaN(parseInt(button.value))) {
-        const clickedNumber = button.value;
-        currentDisplayValue = clickedNumber;
-        secondNumber += currentDisplayValue;
-        dsplyText.textContent = firstNumber + operator + secondNumber;
-      } else if (button.value === '=') {
-        if (firstNumber && operator && secondNumber) {
-          let result = operate(firstNumber, operator, secondNumber);
-          dsplyText.textContent = result;
-          firstNumber = result;
-          operator = '';
-          secondNumber = '';
-        }
-      } else if (button.value === 'Clear') {
-        clear();
-      }
-    });
-  });
-  
-  function clear() {
-    firstNumber = '';
-    operator = '';
+  return divide(+num1, +num2)
+
+} else {throw new Error("Unsupported operator!");}
+
+}
+
+let display = document.querySelector('.display');
+let displayTxt = display.querySelector('p');
+let smallerDisplay = display.querySelector('.smldsply');
+let buttonsContainer = document.querySelector('.containerbtns');
+let buttons = Array.from(buttonsContainer.querySelectorAll('button'));
+
+
+let displayValue = '';
+
+function numberButtonClicked(number) {
+    if (['+', '-', 'x', '/'].includes(number) && operator !== '') {
+    result = operate(firstNumber, operator, secondNumber);
+    operator = number;
+    displayValue = result + operator;
+    firstNumber = result;
     secondNumber = '';
-    dsplyText.textContent = '';
+   
+  } else if ((number === '0' || parseInt(number)) && operator === ''){
+   firstNumber += number;
+   displayValue = firstNumber;
+  
+  } else if (['+', '-', 'x', '/'].includes(number)){
+    operator = number;
+    displayValue = firstNumber + operator;
+    
+  } else if ((number === '0' || parseInt(number)) && operator !== '') {
+    secondNumber += number;
+    displayValue = firstNumber + operator + secondNumber;
+  } else if (number === '=') {
+   result = operate (firstNumber, operator, secondNumber);
+   displayValue = result;
+
+  } else if (number === 'Clear') {
+  displayValue = clear()
+
   }
+  updateDisplay();
+} 
+
+function updateDisplay() {
+  displayTxt.textContent = displayValue;
+  
+}
+function clear () {
+ displayValue = '';
+ firstNumber = '';
+ secondNumber = '';
+ operator = '';
+ result = '';
+}
+
+buttons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    const number = button.value;
+    numberButtonClicked(number);
+  });
+});
   
