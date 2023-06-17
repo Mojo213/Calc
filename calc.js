@@ -15,6 +15,15 @@ function divide(a, b) {
   return a / b;
 }
 
+function modulo(a, b) {
+  if (b === 0) {
+    return "Cannot divide by zero!";
+  }
+  
+  return ((a % b) + b) % b;
+}
+
+
 let firstNumber = '';
 let operator = '';
 let secondNumber = '';
@@ -38,7 +47,10 @@ if (logic === '+') {
   }
   return divide(+num1, +num2)
 
-} else { return "Unsupported operator!";}
+} else if (logic === '%'){
+  return modulo(+num1, +num2)
+}
+  else {return "Unsupported operator!";}
 
 }
 
@@ -52,7 +64,7 @@ let buttons = Array.from(buttonsContainer.querySelectorAll('button'));
 let displayValue = '';
 
 function numberButtonClicked(number) {
-    if (['+', '-', 'x', '/'].includes(number) && operator !== '') {
+    if (['+', '-', 'x', '/', '%'].includes(number) && operator !== '') {
     // previousInput = firstNumber + operator + secondNumber;
     // smallerDisplay.textContent = previousInput;
       
@@ -66,7 +78,7 @@ function numberButtonClicked(number) {
    firstNumber += number;
    displayValue = firstNumber;
   
-  } else if (['+', '-', 'x', '/'].includes(number)){
+  } else if (['+', '-', 'x', '/', '%'].includes(number)){
     operator = number;
     displayValue = firstNumber + operator;
     
@@ -119,5 +131,3 @@ buttons.forEach((button) => {
     numberButtonClicked(number);
   });
 });
-  
-  
