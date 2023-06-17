@@ -65,13 +65,7 @@ body {
     background-color: hsl(0, 72%, 55%);
     color: rgb(255, 255, 255);
     box-shadow: none;
-    width : 346px;
-    }
-
-    button.btn-red2 {
-    background-color: hsl(0, 72%, 55%);
-    color: rgb(255, 255, 255);
-    box-shadow: none;
+    width: 164px
     }
     
     button.btn-opr {
