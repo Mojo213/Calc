@@ -34,11 +34,11 @@ if (logic === '+') {
 
 } else if (logic === '/') {
   if (+num2 === 0) {
-    throw new Error("Cannot divide by zero!");
+    return "Cannot divide by zero!";
   }
   return divide(+num1, +num2)
 
-} else {throw new Error("Unsupported operator!");}
+} else { return "Unsupported operator!";}
 
 }
 
