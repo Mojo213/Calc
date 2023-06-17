@@ -1,3 +1,4 @@
+
 function add(a, b) {
   return a + b;
 }
@@ -18,6 +19,7 @@ let firstNumber = '';
 let operator = '';
 let secondNumber = '';
 let result = '';
+let previousInput = '';
 
 
 function operate (num1, logic, num2) {
@@ -42,7 +44,7 @@ if (logic === '+') {
 
 let display = document.querySelector('.display');
 let displayTxt = display.querySelector('p');
-let smallerDisplay = display.querySelector('.smldsply');
+// let smallerDisplay = document.querySelector('p.smldsply');
 let buttonsContainer = document.querySelector('.containerbtns');
 let buttons = Array.from(buttonsContainer.querySelectorAll('button'));
 
@@ -51,6 +53,9 @@ let displayValue = '';
 
 function numberButtonClicked(number) {
     if (['+', '-', 'x', '/'].includes(number) && operator !== '') {
+    // previousInput = firstNumber + operator + secondNumber;
+    // smallerDisplay.textContent = previousInput;
+      
     result = operate(firstNumber, operator, secondNumber);
     operator = number;
     displayValue = result + operator;
@@ -85,7 +90,8 @@ function numberButtonClicked(number) {
     }
     secondNumber += number;
     displayValue = firstNumber + operator + secondNumber;
-  } else if (number === 'Clear') {
+  }
+} else if (number === 'Clear') {
   displayValue = clear()
 
   }
@@ -96,12 +102,15 @@ function updateDisplay() {
   displayTxt.textContent = displayValue;
   
 }
+
+
 function clear () {
  displayValue = '';
  firstNumber = '';
  secondNumber = '';
  operator = '';
  result = '';
+ // previousInput = '';
 }
 
 buttons.forEach((button) => {
@@ -110,4 +119,5 @@ buttons.forEach((button) => {
     numberButtonClicked(number);
   });
 });
+  
   
