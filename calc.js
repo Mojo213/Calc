@@ -72,6 +72,19 @@ function numberButtonClicked(number) {
    result = operate (firstNumber, operator, secondNumber);
    displayValue = result;
 
+  } else if (number === '.') {
+  if (operator === '') {
+    if (firstNumber.includes('.')) {
+      return; 
+    }
+    firstNumber += number;
+    displayValue = firstNumber;
+  } else {
+    if (secondNumber.includes('.')) {
+      return; 
+    }
+    secondNumber += number;
+    displayValue = firstNumber + operator + secondNumber;
   } else if (number === 'Clear') {
   displayValue = clear()
 
