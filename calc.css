@@ -20,8 +20,7 @@ body {
     padding: 20px;
     border-radius: 10px;
     border: solid #ffffff 2px;
-    height: 300px;
-      
+    height: 300px; 
     }
     
     .containerbtns button {
@@ -36,9 +35,7 @@ body {
     font-weight:bold;
     width: 71px;
     border: hsl(28, 16%, 65%);
-
-    
-     }
+    }
     
     .display {
     width: 414px;
@@ -58,20 +55,30 @@ body {
     }    
 
     h1 {
-        display: flex;
-        width: 414px;
-        margin: 0;
+    display: flex;
+    width: 414px;
+    margin: 0;
        
     }
 
-    button.btn-blue {
-        background-color: hsl(0, 72%, 55%);
-        color: rgb(255, 255, 255);
-        box-shadow: none;
+    button.btn-red {
+    background-color: hsl(0, 72%, 55%);
+    color: rgb(255, 255, 255);
+    box-shadow: none;
+    width : 346px;
+    }
+
+    button.btn-red2 {
+    background-color: hsl(0, 72%, 55%);
+    color: rgb(255, 255, 255);
+    box-shadow: none;
     }
     
     button.btn-opr {
      background-color: hsl(214, 85%, 57%);
      border: hsl(6, 70%, 34%)
+    }
 
+   .smldsply {
+     font-size: 15px;
     }
