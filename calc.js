@@ -28,7 +28,7 @@ let firstNumber = '';
 let operator = '';
 let secondNumber = '';
 let result = '';
-let previousInput = '';
+// let previousInput = '';
 
 
 function operate (num1, logic, num2) {
